@@ -92,8 +92,6 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-# bindsym $mod+s layout stacking
-# bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -179,9 +177,24 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-#######
-#THEME#
-#######
+# Shutdown controls
+set $Locker i3lock && sleep 1
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+s mode "$mode_system"
 
 # set primary gruvbox colorscheme colors
 set $bg #282828
@@ -211,4 +224,11 @@ client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
 client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
 client.urgent           $red $red $white $red $red
 
-exec_always nitrogen --restore
+exec_always --no-startup-id nitrogen --restore
+
+# Brightness Control
+# Temporary fix, will use a bash script to increment another time
+# bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl -d amdgpu_bl0 s 50
+bindsym XF86MonBrightnessDown exec --no-startup-id setbrightness 10-
+# bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -d amdgpu_bl0 s 100
+bindsym XF86MonBrightnessUp exec --no-startup-id setbrightness +10
