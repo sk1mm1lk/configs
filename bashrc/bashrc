@@ -5,8 +5,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-[[ -f ~/.welcome_screen ]] && . ~/.welcome_screen
-
 _set_liveuser_PS1() {
     PS1='[\u@\h \W]\$ '
     if [ "$(whoami)" = "liveuser" ] ; then
@@ -25,21 +23,28 @@ alias ls='ls --color=auto'
 alias ll='ls -lav --ignore=..'   # show long listing of all except ".."
 alias l='ls -lav --ignore=.?*'   # show long listing but no hidden dotfiles except "."
 
-alias spotify='spt'              # spotify api
+# alias spotify='spt'              # spotify api
 alias v='nvim'                   # neovim shortcut
 
 # Git add and commit obsidian changes
 gitobsidian() {
-	git -C ~/Documents/Second\ Brain add .
-	git -C ~/Documents/Second\ Brain commit -m "Terminal quick commit"
+	git -C ~/Documents/SecondBrain add .
+	git -C ~/Documents/SecondBrain commit -m "Terminal quick commit"
 }
+
+# Docker start for COMP604
+# dockercomp604() {
+# 	sudo systemctl start docker
+#	docker start comp604
+#	docker exec -it comp604 bash
+#}
 
 # Set brightness
-setbrightness() {
-	brightnessctl -d amdgpu_bl0 s $1
-}
+# setbrightness() {
+# 	brightnessctl -d amdgpu_bl0 s $1
+# }
 
-[[ "$(whoami)" = "root" ]] && return
+[[ "$(whoami)" == "root" ]] && return
 
 [[ -z "$FUNCNEST" ]] && export FUNCNEST=100          # limits recursive functions, see 'man bash'
 
