@@ -25,6 +25,19 @@ alias l='ls -lav --ignore=.?*'   # show long listing but no hidden dotfiles exce
 
 # alias spotify='spt'              # spotify api
 alias v='nvim'                   # neovim shortcut
+alias cdterm='terminator --working-dir $(pwd)'
+# alias cdp='cd $(cat ~/.cdp_dir)'
+
+cdp() {
+    if [[ -f ~/.cdp_dir ]] ; then
+        cd $(cat ~/.cdp_dir) ; else
+        cdpset
+    fi
+}
+
+cdpset() {
+    pwd > ~/.cdp_dir
+}
 
 # Git add and commit obsidian changes
 gitobsidian() {
