@@ -244,7 +244,7 @@ bindsym $mod+p exec --no-startup-id screenshot
 bindsym $mod+Shift+p exec --no-startup-id screenregion
 
 # Start firefox
-bindsym $mod+t exec --no-startup-id firefox
+bindsym $mod+x exec --no-startup-id firefox
 
 # Start obsidian
 bindsym $mod+o exec --no-startup-id obsidian
