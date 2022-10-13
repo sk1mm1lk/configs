@@ -7,3 +7,4 @@ set expandtab
 set autoindent
 set colorcolumn=80
 hi ColorColumn ctermbg=darkcyan guibg=white_on_darkcyan
+set scrolloff=10

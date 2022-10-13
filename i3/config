@@ -1,4 +1,4 @@
-# i3 config file by sk1mm1lk (v4)
+# i3 config file by sk1mm1lk (v5)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
@@ -177,14 +177,10 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Shutdown controls
-set $Locker i3lock && sleep 1
-
-set $mode_system [l]-> lock [e]-> logout [s]-> suspend [h]-> hibernate [r]-> reboot [S]-> shutdown
+set $mode_system [l]-> lock [e]-> logout [r]-> reboot [S]-> shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym l exec --no-startup-id ~/.config/i3/scripts/mylock, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
 
@@ -205,43 +201,50 @@ set $purple #b16286
 set $aqua #689d68
 set $gray #a89984
 set $darkgray #1d2021
+set $white #ffffff
 
 bar {
 	position top
-	status_command i3status -c /home/m1lkie/.config/i3status/i3status.conf
-	#status_command /usr/bin/bumblebee-status -m battery date time \
-	#-p time.format="%H:%M" -t gruvbox-powerline
+	status_command i3status -c ~/.config/i3status/i3status.conf
 	colors {
 		background $bg
 		statusline $yellow
 	}
 }
 
+#exec_always --no-startup-id ~/.config/i3/polybar.sh &
+
 # class                 border  backgr. text    indicator child_border
-client.focused          $blue $blue $darkgray $purple $darkgray
+client.focused          $blue $blue $white $purple $darkgray
 client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
-client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
+client.unfocused        $white $darkgray $yellow $purple $darkgray
 client.urgent           $red $red $white $red $red
 
+default_border pixel 3
+
+# No border
+for_window [class="^.*"] border pixel 1
+
 exec_always --no-startup-id nitrogen --restore
+exec_always --no-startup-id picom -b --config ~/.config/picom/picom.conf
 
 # Brightness Control
 # Brightness control for Acer Swift 3
 # See bashrc for setbrightness function
 # I know the fix is janky, I just needed something to work
-#bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl -d amdgpu_bl0 s 10-
-#bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -d amdgpu_bl0 s +10
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl -d amdgpu_bl0 s 10-
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -d amdgpu_bl0 s +10
 
-#####################
-# Custom Shortcuts
-#####################
+##########################
+#    Custom Shortcuts    #
+##########################
 
 # Screenshot whole screen
-bindcode 107 exec --no-startup-id screenshot
-bindsym $mod+p exec --no-startup-id screenshot
+bindcode 107 exec --no-startup-id ~/.config/i3/scripts/screenshot
+bindsym $mod+p exec --no-startup-id ~/.config/i3/scripts/screenshot
 
 # Screenshot region
-bindsym $mod+Shift+p exec --no-startup-id screenregion
+bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/screenregion
 
 # Start firefox
 bindsym $mod+x exec --no-startup-id firefox
@@ -250,4 +253,6 @@ bindsym $mod+x exec --no-startup-id firefox
 bindsym $mod+o exec --no-startup-id obsidian
 
 # View open window
-bindsym $mod+Shift+d exec --no-startup-id rofi -show window
+#bindsym $mod+Shift+d exec --no-startup-id rofi -show window
+bindsym $mod+Tab exec --no-startup-id rofi -show window
+
