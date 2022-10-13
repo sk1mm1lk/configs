@@ -215,15 +215,14 @@ bar {
 #exec_always --no-startup-id ~/.config/i3/polybar.sh &
 
 # class                 border  backgr. text    indicator child_border
-client.focused          $blue $blue $white $purple $darkgray
+client.focused          $blue $blue $white $purple $blue
 client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
 client.unfocused        $white $darkgray $yellow $purple $darkgray
 client.urgent           $red $red $white $red $red
 
-default_border pixel 3
 
-# No border
-for_window [class="^.*"] border pixel 1
+# No window title
+for_window [class="^.*"] border pixel 2
 
 exec_always --no-startup-id nitrogen --restore
 exec_always --no-startup-id picom -b --config ~/.config/picom/picom.conf
