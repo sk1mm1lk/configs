@@ -1,10 +1,11 @@
 #
 # ~/.bashrc
-#
+# sk1mm1lk
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# EndeavourOS generated, idk what this does tbh
 _set_liveuser_PS1() {
     PS1='[\u@\h \W]\$ '
     if [ "$(whoami)" = "liveuser" ] ; then
@@ -20,42 +21,24 @@ _set_liveuser_PS1
 unset -f _set_liveuser_PS1
 
 alias ls='ls --color=auto'
-alias ll='ls -lav --ignore=..'   # show long listing of all except ".."
-alias l='ls -lav --ignore=.?*'   # show long listing but no hidden dotfiles except "."
+alias ll='ls -lavt --ignore=..'   # show long listing of all except ".."
+alias l='ls -lav --ignore=.?*'    # show long listing but no hidden dotfiles except "."
 
-# alias spotify='spt'              # spotify api
-alias v='nvim'                   # neovim shortcut
-alias cdterm='terminator --working-dir $(pwd)'
-# alias cdp='cd $(cat ~/.cdp_dir)'
+# Custom aliases
+alias v='nvim'                                       # neovim shortcut
+alias cdterm='terminator --working-dir $(pwd)'       # creates another instance of the terminal at this location
+alias cdf='cd $(dirname `fzf`)'                      # changes directory to a fuzzy found file's directory
+alias graph='git log --decorate --oneline --graph'   # prints out a git log in graph form
 
-cdp() {
-    if [[ -f ~/.cdp_dir ]] ; then
-        cd $(cat ~/.cdp_dir) ; else
-        cdpset
-    fi
+# Sourcing jumper script
+#source ~/.cdp/jumper.sh
+
+# Custom functions
+
+# Simpler screen recording without audio
+recordScreen() {
+    ffmpeg -f x11grab -s 1920x1080 -i :0.0 out.mkv
 }
-
-cdpset() {
-    pwd > ~/.cdp_dir
-}
-
-# Git add and commit obsidian changes
-gitobsidian() {
-	git -C ~/Documents/SecondBrain add .
-	git -C ~/Documents/SecondBrain commit -m "Terminal quick commit"
-}
-
-# Docker start for COMP604
-# dockercomp604() {
-# 	sudo systemctl start docker
-#	docker start comp604
-#	docker exec -it comp604 bash
-#}
-
-# Set brightness
-# setbrightness() {
-# 	brightnessctl -d amdgpu_bl0 s $1
-# }
 
 [[ "$(whoami)" == "root" ]] && return
 
@@ -66,4 +49,5 @@ gitobsidian() {
 bind '"\e[A":history-search-backward'
 bind '"\e[B":history-search-forward'
 
+# Starship terminal
 eval "$(starship init bash)"
