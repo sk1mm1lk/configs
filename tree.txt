@@ -1,0 +1,12 @@
+./dunst/dunstrc
+./dunst/dunstrc.backup
+./i3/config
+./i3status/i3status.conf
+./nvim/init.vim
+./picom/picom.conf
+./scripts/backup-home.sh
+./scripts/mylock.sh
+./scripts/screenregion.sh
+./scripts/screenshot.sh
+./scripts/todos.sh
+./terminator/config

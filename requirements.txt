@@ -1,0 +1,11 @@
+terminator
+dunst
+eom
+nitrogen
+flameshot
+atril
+neovim
+git
+xclip
+picom
+zsh
