@@ -44,3 +44,7 @@ At this stage, the requirements are:
 chmod +x install.sh
 ./install.sh
 ```
+
+### NVIM
+
+- packer install from https://github.com/wbthomason/packer.nvim
