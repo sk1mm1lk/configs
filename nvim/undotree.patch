@@ -1,0 +1,38 @@
+79c79
+<     let g:undotree_WindowLayout = 1
+---
+>     let g:undotree_WindowLayout = 3
+84c84
+<     let g:undotree_ShortIndicators = 0
+---
+>     let g:undotree_ShortIndicators = 1
+90c90
+<         let g:undotree_SplitWidth = 24
+---
+>         let g:undotree_SplitWidth = 42
+92c92
+<         let g:undotree_SplitWidth = 30
+---
+>         let g:undotree_SplitWidth = 45
+98c98
+<     let g:undotree_DiffpanelHeight = 10
+---
+>     let g:undotree_DiffpanelHeight = 20
+143c143
+<     let g:undotree_HighlightChangedText = 1
+---
+>     let g:undotree_HighlightChangedText = 0
+187a188,200
+> endif
+> 
+> if has("persistent_undo")
+>    let target_path = expand('~/.undodir')
+> 
+>     " create the directory and any parent directories
+>     " if the location does not exist.
+>     if !isdirectory(target_path)
+>         call mkdir(target_path, "p", 0700)
+>     endif
+> 
+>     let &undodir=target_path
+>     set undofile

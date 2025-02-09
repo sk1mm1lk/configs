@@ -14,7 +14,8 @@ return require('packer').startup(function(use)
   }
 
   use { 'catppuccin/nvim', as = 'catppuccin'}
-  use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+  use { 'AmberLehmann/candyland.nvim', as = 'candyland' }
+  use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'}) -- This was having problems before??
   use('ThePrimeagen/harpoon')
   use('mbbill/undotree')
   use('tpope/vim-fugitive')

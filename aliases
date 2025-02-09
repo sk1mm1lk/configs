@@ -1,0 +1,12 @@
+alias ec='emacsclient -c -a "emacs"'
+alias cdf='cd $(dirname `fzf`)'                      # changes directory to a fuzzy found file's directory
+alias cdterm='terminator --working-dir $(pwd)'       # creates another instance of the terminal at this location
+alias ghtoken='cat /home/m1lkie/documents/github/token.txt | xclip -selection clipboard'
+alias graph='git log --decorate --oneline --graph'   # prints out a git log in graph form
+alias l='ls -halt'
+alias ll='ls -halt'
+alias ohmyzsh="nvim ~/.oh-my-zsh"
+alias p='sudo pacman'
+alias v='nvim'                                       # neovim shortcut
+alias above='xrandr --output HDMI-A-0 --auto && xrandr --output HDMI-A-0 --above eDP'
+alias zshconfig="nvim ~/.zshrc"

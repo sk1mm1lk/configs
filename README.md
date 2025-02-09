@@ -40,7 +40,13 @@ At this stage, the requirements are:
 
 ## Installation
 
+- This is still a work in progress, I combined dev into main too soon :P
+
 ```bash
 chmod +x install.sh
 ./install.sh
 ```
+
+### NVIM
+
+- packer install from https://github.com/wbthomason/packer.nvim
